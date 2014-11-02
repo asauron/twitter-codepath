@@ -12,17 +12,16 @@ NSString * const UserDidLogoutNotification = @"UserDidLoginNotification";
 
 @interface User()
 
+@property(nonatomic,strong)NSDictionary *dictionary;
+
 @end
 
 @implementation User
 
-
-static User *_currentUser;
-NSString * const kCurrentUserKey = @"kCurrentUserKey";
-
 -(id) initWithDictionary:(NSDictionary *) dictionary {
     self =  [super init];
     if(self){
+        self.dictionary = dictionary;
         self.name = dictionary[@"name"];
         self.sreenname = dictionary[@"screen_name"];
         self.tweetcount = [dictionary[@"statuses_count"] integerValue];
@@ -37,6 +36,8 @@ NSString * const kCurrentUserKey = @"kCurrentUserKey";
     
 }
 
+static User *_currentUser = nil;
+NSString * const kCurrentUserKey = @"kCurrentUserKey";
 
 + (User *)currentUser {
     if (_currentUser == nil) {
@@ -46,10 +47,13 @@ NSString * const kCurrentUserKey = @"kCurrentUserKey";
             _currentUser = [[User alloc] initWithDictionary:dictionary];
         }
     }
+    NSLog(@"current user %@",_currentUser);
+    
     return _currentUser;
 }
 
 +(void)setCurrentUser:(User *)currentUser {
+  
     _currentUser = currentUser;
     
     if (_currentUser != nil) {

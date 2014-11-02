@@ -56,10 +56,10 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
         NSLog(@"got access token");
         [self.requestSerializer saveAccessToken:accessToken];
         [self GET:@"1.1/account/verify_credentials.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-           // NSLog(@"current user: %@", responseObject);
+            NSLog(@"current user: %@", responseObject);
             User *user = [[User alloc] initWithDictionary:responseObject];
             NSLog(@"user object: %@", user.name);
-         //   [User setCurrentUser:user];
+            [User setCurrentUser:user];
             self.loginCompletion(user, nil);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"failed to get current user");

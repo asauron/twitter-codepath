@@ -10,7 +10,7 @@
 
 @interface User : NSObject
 
-@property (nonatomic, strong) NSDictionary *dictionary;
+//@property (nonatomic, strong) NSDictionary *dictionary;
 
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic,strong) NSString *sreenname;
