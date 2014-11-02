@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "TwitterClient.h"
+#import "User.h"
 
 @interface AppDelegate ()
 
@@ -48,20 +49,24 @@
 }
 
 -(BOOL)application:(UIApplication *) application openURL:(NSURL *) url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    [[TwitterClient sharedInstance] fetchAccessTokenWithPath:@"oauth/access_token" method:@"POST" requestToken:[BDBOAuthToken tokenWithQueryString:url.query] success:^(BDBOAuthToken *accessToken) {
+    [[TwitterClient sharedInstance] openURL:url];
+    
+    /*[[TwitterClient sharedInstance] fetchAccessTokenWithPath:@"oauth/access_token" method:@"POST" requestToken:[BDBOAuthToken tokenWithQueryString:url.query] success:^(BDBOAuthToken *accessToken) {
         NSLog(@"got access oken");
         
         [[TwitterClient sharedInstance].requestSerializer saveAccessToken:accessToken];
         [[TwitterClient sharedInstance] GET:@"1.1/account/verify_credentials.json" parameters:nil
                                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                        NSLog(@"current user %@",responseObject);
+                                        User *user = [[User alloc]initWithDictionary:responseObject];
+                                        NSLog(@"current user name %@",user.name);
+
                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                          NSLog(@"did not get current user");
                                     }];
     } failure:^(NSError *error) {
         NSLog(@"did not get access token");
 
-    }];
+    }];*/
     return YES;
 }
 

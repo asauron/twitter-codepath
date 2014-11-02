@@ -1,33 +1,18 @@
 //
-//  LoginViewController.m
+//  TweetsViewController.m
 //  TwitterCodepath
 //
-//  Created by Abinaya Sarva on 10/30/14.
+//  Created by Abinaya Sarva on 11/2/14.
 //  Copyright (c) 2014 Sarva. All rights reserved.
 //
 
-#import "LoginViewController.h"
-#import "TwitterClient.h"
 #import "TweetsViewController.h"
 
-@interface LoginViewController ()
+@interface TweetsViewController ()
 
 @end
 
-@implementation LoginViewController
-- (IBAction)loginButton:(id)sender {
-   [[TwitterClient sharedInstance] loginWithCompletion:^(User *user, NSError *error) {
-        if (user != nil) {
-            // Modally present tweets view
-            NSLog(@"Hello %@", user.name);
-            UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];
-            [self presentViewController:vc animated:YES completion:nil];
-        } else {
-            // Present error view
-        }
-    }];
-}
-    
+@implementation TweetsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
