@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) UIViewController *parentVC;
 
+@property (weak, nonatomic) IBOutlet UILabel *retweetedLabek;
 
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
 
@@ -87,6 +88,13 @@
     self.handleLabel.text = [NSString stringWithFormat:@"@%@", tweet.twitterhandle];
     self.timeLabel.text = tweet.timestamp;
     self.tweetLabel.text = tweet.tweettext;
+    if (self.tweet.sender != nil) {
+        self.retweetedLabek.text = [NSString stringWithFormat:@"%@ retweeted", self.tweet.sender.name];
+        [self.retweetedLabek setHidden:NO];
+    } else {
+        [self.retweetedLabek setHidden:YES];
+    }
+
 }
 
 

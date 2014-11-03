@@ -60,15 +60,10 @@
     self.nameLabel.text = self.tweet.name;
     self.handleLabel.text =self.tweet.twitterhandle;
     self.title = @"Tweet Detail";
-
-    
     if (self.tweet.sender != nil) {
         self.retweetTextAtTop.text = [NSString stringWithFormat:@"%@ retweeted", self.tweet.sender.name];
-        
-        [self.retweetTextAtTop setHidden:NO];
         [self.retweetTextAtTop setHidden:NO];
     } else {
-        [self.retweetTextAtTop setHidden:YES];
         [self.retweetTextAtTop setHidden:YES];
     }
 }

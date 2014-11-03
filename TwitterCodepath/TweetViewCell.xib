@@ -69,8 +69,14 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="retweeted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZR-ii-a84">
+                        <rect key="frame" x="237" y="82" width="57" height="21"/>
+                        <fontDescription key="fontDescription" type="italicSystem" pointSize="10"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4h" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcB-oX-mT0">
-                        <rect key="frame" x="302" y="95.5" width="9.5" height="10"/>
+                        <rect key="frame" x="302" y="95" width="9.5" height="10"/>
                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -130,6 +136,7 @@
                 <outlet property="handleLabel" destination="9wE-23-gIe" id="yhh-iQ-PmH"/>
                 <outlet property="nameLabel" destination="kAR-zn-YBV" id="MnQ-iD-a7k"/>
                 <outlet property="profileImageView" destination="sp3-mk-l7X" id="NVU-pf-3Fk"/>
+                <outlet property="retweetedLabek" destination="dZR-ii-a84" id="DQm-Jg-x5W"/>
                 <outlet property="timeLabel" destination="gcB-oX-mT0" id="Dd5-rs-d16"/>
                 <outlet property="tweetLabel" destination="3rJ-Cj-Nde" id="Gwc-yg-ftT"/>
             </connections>
