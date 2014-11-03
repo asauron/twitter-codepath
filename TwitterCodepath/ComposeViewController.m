@@ -55,14 +55,7 @@
 - (IBAction)onTweet:(id)sender {
     NSLog(@"Hit POST button");
     [[TwitterClient sharedInstance] post:[User currentUser] withText:self.messageText.text completion:^(NSError *error) {
-        if (error) {
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tweet Error" message:[error localizedDescription] delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil];
-            [alert show];
-        } else {
-            
-            [self.navigationController popViewControllerAnimated:YES];
-        }
+        NSLog(@"tweeted");
     }];
 }
 
