@@ -26,7 +26,7 @@
 - (IBAction)onRetweet:(id)sender {
     [[TwitterClient sharedInstance] retweet:self.tweet.tweetID completion:^(NSDictionary *response, NSError *error) {
         if (response != nil) {
-            NSLog(@"Successfully !");
+            NSLog(@"Success!");
         }
     }];
 
