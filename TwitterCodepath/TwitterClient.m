@@ -115,10 +115,12 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
        success:^(AFHTTPRequestOperation *operation, id responseObject) {
            NSLog(@"%@", responseObject);
            completion(nil);
+           NSLog(@"posted tweet");
        }
        failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-           NSLog(@"%@", error);
+        NSLog(@"failed to post tweet");
            completion(error);
+           
        }];
 }
 
@@ -126,9 +128,9 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     NSString *postURL = [NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", tweetId];
     [self POST:postURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         completion(responseObject, nil);
-        NSLog(@"posted retweet");
+        NSLog(@"posted tweet");
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Sorry, couldnt post retweet! %@", error);
+        NSLog(@"failed to post tweet");
         completion(nil, error);
     }];
 }
