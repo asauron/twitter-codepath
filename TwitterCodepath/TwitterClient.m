@@ -8,6 +8,7 @@
 
 #import "TwitterClient.h"
 #import <NSDictionary+BDBOAuth1Manager.h>
+#import "Tweet.h"
 
 NSString * const kTwitterConsumerKey = @"hoat7TYGBTfVq821QCPdkPiEN";
 NSString * const kTwitterConsumerSecret = @"jg8WOTAdDPnij57Tybrnl9V97kPzBjbZ7xuDQql0pldTyTcwQ3";
@@ -72,14 +73,15 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     
 }
 
-/*- (void)homeTimelineWithParams:(NSDictionary *)params completion:(void (^)(NSArray *tweets, NSError *error))completion {
+- (void)homeTimelineWithParams:(NSDictionary *)params completion:(void (^)(NSArray *tweets, NSError *error))completion {
     [self GET:@"1.1/statuses/home_timeline.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *tweets = [Tweet tweetsWithArray:responseObject];
+        NSLog(@"tweers are %@",tweets);
         completion(tweets, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error loading home_timeline");
         completion(nil, error);
     }];
-}*/
+}
 
 @end

@@ -7,8 +7,14 @@
 //
 
 #import "TweetsViewController.h"
+#import "User.h"
+#import "TwitterClient.h"
+#import "Tweet.h"
+#import "ComposeViewController.h"
 
 @interface TweetsViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tweetsTableView;
+
 
 @end
 
@@ -17,12 +23,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"Home";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onLogout:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Compose" style:UIBarButtonItemStylePlain target:self action:@selector(onCompose:)];
+    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
+        for(Tweet *tweet in tweets){
+            NSLog(@"test %@", tweet.tweettext);
+        }
+
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)onLogout:(id)sender {
+    NSLog(@"logging out");
+    [User logOut];
+}
+
+- (IBAction)onCompose:(id)sender {
+    NSLog(@"composing new tweet");
+    ComposeViewController *vc = [[ComposeViewController alloc] init];
+    vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 /*
 #pragma mark - Navigation
