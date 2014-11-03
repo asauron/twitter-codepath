@@ -1,5 +1,5 @@
 //
-//  TweetViewCell.h
+//  TweetsDetailViewController.h
 //  TwitterCodepath
 //
 //  Created by Abinaya Sarva on 11/2/14.
@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Tweet.h"
 
-@interface TweetViewCell : UITableViewCell
-
-@property (nonatomic, strong) Tweet *tweet;
+@interface TweetsDetailViewController : UIViewController
 
 @end

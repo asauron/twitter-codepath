@@ -26,12 +26,6 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="handleLabel" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wE-23-gIe">
-                        <rect key="frame" x="211" y="25" width="94" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timeLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcB-oX-mT0">
                         <rect key="frame" x="227" y="84" width="75" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -49,21 +43,36 @@
                         <state key="normal" title="rep">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="onReply:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NSZ-BZ-9Zs"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ml2-yO-h72">
                         <rect key="frame" x="142" y="82" width="30" height="30"/>
                         <state key="normal" title="F">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="onFavorite:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="20Q-ln-QvI"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0C-Yb-hkz">
                         <rect key="frame" x="173" y="81" width="30" height="30"/>
                         <state key="normal" title="Rt">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="onRetweet:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="XVp-eR-4Pq"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="retweeted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSZ-nF-2T7">
                         <rect key="frame" x="104" y="1" width="77" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="handleLabel" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wE-23-gIe">
+                        <rect key="frame" x="211" y="25" width="94" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -84,6 +93,14 @@
                     <constraint firstItem="3rJ-Cj-Nde" firstAttribute="top" secondItem="9wE-23-gIe" secondAttribute="bottom" constant="10" id="zIr-V4-Yee"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="handleLabel" destination="9wE-23-gIe" id="yhh-iQ-PmH"/>
+                <outlet property="nameLabel" destination="kAR-zn-YBV" id="MnQ-iD-a7k"/>
+                <outlet property="profileImageView" destination="sp3-mk-l7X" id="NVU-pf-3Fk"/>
+                <outlet property="retweetedLabel" destination="jSZ-nF-2T7" id="AkC-RS-C1j"/>
+                <outlet property="timeLabel" destination="gcB-oX-mT0" id="Dd5-rs-d16"/>
+                <outlet property="tweetLabel" destination="3rJ-Cj-Nde" id="Gwc-yg-ftT"/>
+            </connections>
             <point key="canvasLocation" x="139" y="181"/>
         </tableViewCell>
     </objects>

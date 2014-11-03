@@ -11,9 +11,14 @@
 #import "TwitterClient.h"
 #import "Tweet.h"
 #import "ComposeViewController.h"
+#import "TweetViewCell.h"
+#import "TweetsDetailViewController.h"
 
-@interface TweetsViewController ()
+#import "UIImageView+AFNetworking.h"
+
+@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tweetsTableView;
+@property (nonatomic, strong) NSArray *tweets;
 
 
 @end
@@ -30,8 +35,17 @@
         for(Tweet *tweet in tweets){
             NSLog(@"test %@", tweet.tweettext);
         }
+        self.tweets = tweets;
+        NSLog(@"Loaded %lu tweets!", (unsigned long)tweets.count);
+        [self.tweetsTableView reloadData];
 
     }];
+    self.tweetsTableView.delegate = self;
+    self.tweetsTableView.dataSource = self;
+    self.tweetsTableView.rowHeight = UITableViewAutomaticDimension;
+    
+    UINib *tweetNib = [UINib nibWithNibName:@"TweetViewCell" bundle:nil];
+    [self.tweetsTableView registerNib:tweetNib forCellReuseIdentifier:@"TweetViewCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,12 +59,44 @@
 }
 
 - (IBAction)onCompose:(id)sender {
-    NSLog(@"composing new tweet");
+    NSLog(@"composing ");
     ComposeViewController *vc = [[ComposeViewController alloc] init];
     vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Tweet *tweet = self.tweets[indexPath.row];
+    
+    NSString *text = tweet.tweettext;
+    UIFont *fontText = [UIFont systemFontOfSize:15.0];
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(225, CGFLOAT_MAX)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:@{NSFontAttributeName:fontText}
+                                     context:nil];
+    
+    CGFloat heightOffset = 45;
+    return rect.size.height + heightOffset;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TweetViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetViewCell" forIndexPath:indexPath];
+    cell.tweet = self.tweets[indexPath.row];
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.tweets.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    TweetsDetailViewController *vc = [[TweetsDetailViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 /*
 #pragma mark - Navigation

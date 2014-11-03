@@ -84,4 +84,26 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     }];
 }
 
+- (void) post:(User *)user withText:(NSString *)text completion:(void (^)(NSError *error)) completion {
+    NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:text, @"status", nil];
+    NSLog(@"posting tweet: %@", params);
+    
+    if ([text length] <= 0) {
+        NSLog(@"nothing to tweet");
+        return;
+    }
+    
+    if ([text length] > 140) {
+        NSLog(@"more than 140 characters ");
+        
+    }
+
+    
+    [self POST:@"1.1/statuses/update.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        completion(nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(error);
+    }];
+    
+}
 @end

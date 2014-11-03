@@ -24,6 +24,7 @@
 		B69F6F8A1A06FCCF00B27398 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B69F6F881A06FCCF00B27398 /* ComposeViewController.xib */; };
 		B69F6F8E1A06FE6400B27398 /* TweetViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B69F6F8C1A06FE6400B27398 /* TweetViewCell.m */; };
 		B69F6F8F1A06FE6400B27398 /* TweetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B69F6F8D1A06FE6400B27398 /* TweetViewCell.xib */; };
+		B69F6F921A07343900B27398 /* TweetsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B69F6F911A07343900B27398 /* TweetsDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		B69F6F8B1A06FE6400B27398 /* TweetViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewCell.h; sourceTree = "<group>"; };
 		B69F6F8C1A06FE6400B27398 /* TweetViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetViewCell.m; sourceTree = "<group>"; };
 		B69F6F8D1A06FE6400B27398 /* TweetViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetViewCell.xib; sourceTree = "<group>"; };
+		B69F6F901A07343900B27398 /* TweetsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetsDetailViewController.h; sourceTree = "<group>"; };
+		B69F6F911A07343900B27398 /* TweetsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +152,8 @@
 				B69F6F8B1A06FE6400B27398 /* TweetViewCell.h */,
 				B69F6F8C1A06FE6400B27398 /* TweetViewCell.m */,
 				B69F6F8D1A06FE6400B27398 /* TweetViewCell.xib */,
+				B69F6F901A07343900B27398 /* TweetsDetailViewController.h */,
+				B69F6F911A07343900B27398 /* TweetsDetailViewController.m */,
 			);
 			path = TwitterCodepath;
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 				B64891EC1A0307E500573C27 /* main.m in Sources */,
 				B64892121A030BA300573C27 /* LoginViewController.m in Sources */,
 				B69F6F841A06AE0300B27398 /* TweetsViewController.m in Sources */,
+				B69F6F921A07343900B27398 /* TweetsDetailViewController.m in Sources */,
 				B69F6F8E1A06FE6400B27398 /* TweetViewCell.m in Sources */,
 				B69F6F891A06FCCF00B27398 /* ComposeViewController.m in Sources */,
 			);
