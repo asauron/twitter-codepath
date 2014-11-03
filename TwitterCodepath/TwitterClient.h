@@ -16,4 +16,6 @@
 
 - (void)homeTimelineWithParams:(NSDictionary *)params completion:(void (^)(NSArray *tweets, NSError *error))completion;
 - (void) post:(User *)user withText:(NSString *)text completion:(void (^)(NSError *error)) completion;
+- (void) favourite:(NSString *)tweetId completion:(void (^)(NSError *error))completion;
+- (void) retweet:(NSString *)tweetId completion:(void (^)(NSDictionary *response, NSError *error))completion;
 @end

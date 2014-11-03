@@ -7,9 +7,9 @@
 //
 
 #import "Tweet.h"
+#import <NSDate+TimeAgo.h>
 
 @implementation Tweet
-
 
 -(id) initWithDictionary:(NSDictionary *) dictionary {
     self = [super init];
@@ -23,9 +23,25 @@
         NSString *createdAtString = dictionary[@"created_at"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"EEE MMM d HH:mm:ssZ y";
+    
+        //self.createdAt = [formatter dateFromString:createdAtString];
         
-        self.createdAt = [formatter dateFromString:createdAtString];
+       // NSDateFormatter *datefformat = [[NSDateFormatter alloc] init];
+        //[datefformat setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
+        NSDate *tweetDate = [formatter dateFromString:createdAtString];
+        self.timestamp = [tweetDate timeAgo];
+    
+       
         self.user = [[User alloc] initWithDictionary:dictionary[@"user"]];
+        self.retweetCount = dictionary[@"retweet_count"];
+        self.favoriteCount = dictionary[@"favorite_count"];
+
+        if ([dictionary objectForKey:@"retweeted_status"] != nil) {
+            self.sender = [[User alloc] initWithDictionary:dictionary[@"retweeted_status"][@"user"]];
+            self.isRetweet = true;
+        } else {
+            self.sender = nil;
+        }
     }
     
     return self;

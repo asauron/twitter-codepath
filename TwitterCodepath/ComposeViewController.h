@@ -10,4 +10,7 @@
 
 @interface ComposeViewController : UIViewController<UITextViewDelegate>
 
+@property (weak, nonatomic) NSString *replyHandle;
+
+
 @end

@@ -9,7 +9,8 @@
 #import "TweetViewCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
-
+#import "Tweet.h"
+#import "TwitterClient.h"
 @interface TweetViewCell()
 
 
@@ -24,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *tweetLabel;
 @property (weak, nonatomic) IBOutlet UIButton *FavButton;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) UIViewController *parentVC;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
@@ -36,12 +38,29 @@
 
 @implementation TweetViewCell
 - (IBAction)onReply:(id)sender {
+    ComposeViewController *vc = [[ComposeViewController alloc] init];
+    vc.replyHandle = [NSString stringWithFormat:@"@%@ ",self.tweet.sender.name];
+     [self.parentVC.navigationController pushViewController:vc animated:YES];
+
+    
 }
 
 - (IBAction)onFavorite:(id)sender {
+    [[TwitterClient sharedInstance] favourite:self.tweet.tweetID completion:^(NSError *error) {
+        if (error == nil) {
+            NSLog(@"Success!");
+            
+        }
+    }];
+    
 }
 
 - (IBAction)onRetweet:(id)sender {
+    [[TwitterClient sharedInstance] retweet:self.tweet.tweetID completion:^(NSDictionary *response, NSError *error) {
+        if (response != nil) {
+            NSLog(@"Successfully retweeted!");
+        }
+    }];
 }
 
 
@@ -66,7 +85,7 @@
     [self.profileImageView setImageWithURL:[NSURL URLWithString:tweet.profileimageurl]];
     self.nameLabel.text = tweet.name;
     self.handleLabel.text = [NSString stringWithFormat:@"@%@", tweet.twitterhandle];
-    //    self.timestampLabel.text = tweet.truncatedCreatedAt;
+    self.timeLabel.text = tweet.timestamp;
     self.tweetLabel.text = tweet.tweettext;
 }
 

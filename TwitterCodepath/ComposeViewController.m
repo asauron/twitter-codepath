@@ -30,8 +30,12 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Tweet" style:UIBarButtonItemStylePlain target:self action:@selector(onTweet:)];
     
     User *user = [User currentUser];
+    NSLog(@"current user is %@",user);
     self.nameLabel.text = user.name;
+    NSLog(@"current user is %@",user.name);
     self.handleLabel.text = user.sreenname;
+    NSLog(@"current user is %@",user.sreenname);
+    self.messageText.text = self.replyHandle;
     
     [self.profileImageView setImageWithURL:[NSURL URLWithString:user.profileimageurl]];
 
@@ -63,7 +67,7 @@
 }
 
 - (IBAction)onCancel:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+   [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*

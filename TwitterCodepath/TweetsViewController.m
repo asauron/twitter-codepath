@@ -12,13 +12,14 @@
 #import "Tweet.h"
 #import "ComposeViewController.h"
 #import "TweetViewCell.h"
-#import "TweetsDetailViewController.h"
+#import "TweetDetailViewController.h"
 
 #import "UIImageView+AFNetworking.h"
 
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tweetsTableView;
 @property (nonatomic, strong) NSArray *tweets;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 
 @end
@@ -44,10 +45,31 @@
     self.tweetsTableView.dataSource = self;
     self.tweetsTableView.rowHeight = UITableViewAutomaticDimension;
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tweetsTableView insertSubview:self.refreshControl atIndex:0];
+    
     UINib *tweetNib = [UINib nibWithNibName:@"TweetViewCell" bundle:nil];
     [self.tweetsTableView registerNib:tweetNib forCellReuseIdentifier:@"TweetViewCell"];
+   
+     [self.refreshControl.superview sendSubviewToBack:self.refreshControl];
 }
 
+
+- (void) onRefresh {
+    
+    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
+        for(Tweet *tweet in tweets){
+            NSLog(@"test %@", tweet.tweettext);
+        }
+        self.tweets = tweets;
+        NSLog(@"Loaded %lu tweets!", (unsigned long)tweets.count);
+        [self.tweetsTableView reloadData];
+        
+    }];
+     [self.refreshControl endRefreshing];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -75,7 +97,7 @@
                                   attributes:@{NSFontAttributeName:fontText}
                                      context:nil];
     
-    CGFloat heightOffset = 45;
+    CGFloat heightOffset = 120;
     return rect.size.height + heightOffset;
 }
 
@@ -94,7 +116,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    TweetsDetailViewController *vc = [[TweetsDetailViewController alloc] init];
+    TweetDetailViewController *vc = [[TweetDetailViewController alloc] init];
+    
+    vc.title = @"Tweet";
+    
+    vc.tweet = self.tweets[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

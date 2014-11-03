@@ -106,4 +106,32 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     }];
     
 }
+- (void)favourite:(NSString *)tweetId completion:(void (^)(NSError *error))completion {
+   
+    NSDictionary *params = @{@"id": tweetId};
+    
+    [self POST:@"1.1/favorites/create.json"
+    parameters:params
+       success:^(AFHTTPRequestOperation *operation, id responseObject) {
+           NSLog(@"%@", responseObject);
+           completion(nil);
+       }
+       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+           NSLog(@"%@", error);
+           completion(error);
+       }];
+}
+
+- (void)retweet:(NSString *)tweetId completion:(void (^)(NSDictionary *response, NSError *error))completion {
+    NSString *postURL = [NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", tweetId];
+    [self POST:postURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        completion(responseObject, nil);
+        NSLog(@"posted retweet");
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Sorry, couldnt post retweet! %@", error);
+        completion(nil, error);
+    }];
+}
+
+
 @end
