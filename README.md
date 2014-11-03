@@ -1,6 +1,6 @@
 twitter-codepath
 ================
-Time spent: `8 WIP`
+Time spent: `10 WIP`
 ### Features
 
 #### Required
@@ -23,6 +23,10 @@ Time spent: `8 WIP`
 - [ ] Replies should be prefixed with the username and the reply_id should be set when posting the tweet,
 - [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 
+####Roadblocks
+ Spent a lot of time on auto layout issues, the image view for profile image of user returns elsewhere but not in the actual page(it gets blanked out).
+ Still adding polish, submitted to meet deadline
+ 
 ### Walkthrough
 
 ![Video Walkthrough](http://i.imgur.com/ciT2vg3.gif)
