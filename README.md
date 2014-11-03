@@ -25,6 +25,6 @@ Time spent: `8 WIP`
 
 ### Walkthrough
 
-![Video Walkthrough](...)
+![Video Walkthrough](http://i.imgur.com/ciT2vg3.gif)
 
 
